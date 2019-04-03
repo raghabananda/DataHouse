@@ -56,6 +56,20 @@
   <div class="col-md-7">
      <table class="table table-bordered table-sm">
       <thead>
+       <tr>
+        <td>
+         <select>
+           <option>Select Department</option>
+           <option>Hr</option>
+           <option>Admin</option>
+           <option>Operation</option>
+         </select>
+         </td>
+        <td>
+         <input type="text" id="search">
+        </td>
+        <button id="btnSearch">Search</button>
+       </tr>
       <tr>
        <td>Name</td>
        <td>Email ID</td>
@@ -79,6 +93,7 @@
    $('#deprt').val('');
    
   };
+  let datas=[];
   
    $('#Submit').on("click",(e)=>{
        e.preventDefault();
@@ -86,13 +101,23 @@
        let lname=$('#lname').val();
        let email=$('#email').val();
        let deprt=$('#deprt').val();
-    $('.tabledata').append(`<tr>
-     <td>`+fname+` `+lname+`</td>
-     <td>`+email+`</td>
-     <td>`+deprt+`</td></tr>
-    `);
+    
+    datas.push({fname,lname,email,deprt});
+    loaddata(datas);
     reset();
    });
+  
+  let loaddata=(datas)=>{
+    datas.foreach(data=>{
+      $('.tabledata').append(`<tr>
+     <td>`+data.fname+` `+data.lname+`</td>
+     <td>`+data.email+`</td>
+     <td>`+data.deprt+`</td></tr>
+    `);
+    });
+  };
+  
+  
  });
  </script>
 </body>
