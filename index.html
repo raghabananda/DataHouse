@@ -95,10 +95,10 @@
   };
   let datas=[
    {
-   fname:'',
-   lname:'',
-   email:'',
-   deprt:''
+   fname:'Raghav',
+   lname:'Anand',
+   email:'raghav@gmail.com',
+   deprt:'Operation'
    }
   ];
   
@@ -109,13 +109,13 @@
        let email=$('#email').val();
        let deprt=$('#deprt').val();
     
-    datas.push({fname,lname,email,deprt});
+    datas=[...datas,{fname,lname,email,deprt}];
     loaddata(datas);
     reset();
    });
   
   let loaddata=(datas)=>{
-    datas.foreach(data=>{
+    datas.map(data=>{
       $('.tabledata').append(`<tr>
      <td>`+data.fname+` `+data.lname+`</td>
      <td>`+data.email+`</td>
