@@ -88,6 +88,8 @@
 <script>
  $(document).ready(()=>{
   
+  
+  //form reset
   let reset= ()=>{
    $('#fname').val('');
    $('#lname').val('');
@@ -104,6 +106,8 @@
    }
   ];
   
+  //submit click event
+  
    $('#Submit').on("click",(e)=>{
        e.preventDefault();
        let fname=$('#fname').val();
@@ -117,6 +121,9 @@
     reset();
    });
   
+  
+  //Drop dwon change event
+  
   $('#DataDeprtchange').on("change",()=>{
    let value= $('#DataDeprtchange').val();
    if(value==='Select All')
@@ -126,6 +133,15 @@
     loaddata(datalist);
    }
   });
+  
+ //search event
+  
+  $('#btnSearch').on("click",()=>{
+    let searchqry=$('#search').val();
+   let datalist = datas.filter(d=>d.email===searchqry);
+   loaddata(datalist);
+  });
+  
   
   let loaddata=(datas)=>{
    $('.tabledata').empty();
