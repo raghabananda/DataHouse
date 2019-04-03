@@ -68,7 +68,9 @@
         <td>
          <input type="text" id="search">
         </td>
+        <td>
         <button id="btnSearch">Search</button>
+        </td>
        </tr>
       <tr>
        <td>Name</td>
@@ -108,6 +110,7 @@
        let lname=$('#lname').val();
        let email=$('#email').val();
        let deprt=$('#deprt').val();
+       $('.tabledata').empty();   
     
     datas=[...datas,{fname,lname,email,deprt}];
     loaddata(datas);
