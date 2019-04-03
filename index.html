@@ -58,7 +58,7 @@
       <thead>
        <tr>
         <td>
-         <select>
+         <select id="DataDeprtchange">
            <option>Select Department</option>
            <option>Hr</option>
            <option>Admin</option>
@@ -110,14 +110,22 @@
        let lname=$('#lname').val();
        let email=$('#email').val();
        let deprt=$('#deprt').val();
-       $('.tabledata').empty();   
+      // $('.tabledata').empty();   
     
     datas=[...datas,{fname,lname,email,deprt}];
     loaddata(datas);
     reset();
    });
   
+  $('#DataDeprtchange').on("change",()=>{
+   let value= $('#DataDeprtchange').val();
+    let datalist=datas.filter(d=>d.deprt===value);
+    
+    loaddata(datalist);
+  });
+  
   let loaddata=(datas)=>{
+   $('.tabledata').empty();
     datas.map(data=>{
       $('.tabledata').append(`<tr>
      <td>`+data.fname+` `+data.lname+`</td>
