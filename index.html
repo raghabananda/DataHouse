@@ -55,12 +55,15 @@
   </div>
   <div class="col-md-7">
      <table class="table table-bordered table-sm">
+      <thead>
       <tr>
        <td>Name</td>
        <td>Email ID</td>
        <td>Department</td>
        </tr>
-      <tr class="tabledata"></tr>
+      </thead>
+      <tbody class="tabledata">      
+      </tbody>
    </table>
   </div>
   
@@ -83,10 +86,10 @@
        let lname=$('#lname').val();
        let email=$('#email').val();
        let deprt=$('#deprt').val();
-    $('.tabledata').append(`
+    $('.tabledata').append(`<tr>
      <td>`+fname+` `+lname+`</td>
      <td>`+email+`</td>
-     <td>`+deprt+`</td>
+     <td>`+deprt+`</td></tr>
     `);
     reset();
    });
