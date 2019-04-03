@@ -68,6 +68,15 @@
 </div>
 <script>
  $(document).ready(()=>{
+  
+  let reset= ()=>{
+   $('#fname').val('');
+   $('#lname').val('');
+   $('#email').val('');
+   $('#deprt').val('');
+   
+  };
+  
    $('#Submit').on("click",(e)=>{
        e.preventDefault();
        let fname=$('#fname').val();
@@ -79,7 +88,7 @@
      <td>`+email+`</td>
      <td>`+deprt+`</td>
     `);
-    
+    reset();
    });
  });
  </script>
