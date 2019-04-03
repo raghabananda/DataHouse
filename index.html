@@ -59,7 +59,7 @@
        <tr>
         <td>
          <select id="DataDeprtchange">
-           <option>Select Department</option>
+           <option>Select All</option>
            <option>Hr</option>
            <option>Admin</option>
            <option>Operation</option>
@@ -119,9 +119,12 @@
   
   $('#DataDeprtchange').on("change",()=>{
    let value= $('#DataDeprtchange').val();
-    let datalist=datas.filter(d=>d.deprt===value);
-    
+   if(value==='Select All')
+    loaddata(datas);
+   else{
+    let datalist=datas.filter(d=>d.deprt===value);    
     loaddata(datalist);
+   }
   });
   
   let loaddata=(datas)=>{
