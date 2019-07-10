@@ -1,0 +1,164 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+<br/><br/>
+<div class="container">
+ <div class="row">
+  
+  <div class="col-md-5">
+  
+  <form>
+    <div class="card">
+      <div class="card-header">
+      <h1>Data</h1>
+      </div>
+      <div class="card-body">
+      
+      <div class="form-group">
+        <label>First Name :</label>
+        <input type="text" class="form-control" id="fname">
+      </div>
+      
+       <div class="form-group">
+        <label>Last Name :</label>
+        <input type="text" class="form-control" id="lname">
+      </div>
+      
+       <div class="form-group">
+        <label>Email ID :</label>
+        <input type="text" class="form-control" id="email">
+      </div>
+
+       <div class="form-group">
+        <label>Department :</label>
+        <select class="form-control" id="deprt">
+        <option>Select Department</option>
+        <option>Hr</option>
+        <option>Admin</option>
+        <option>Operation</option>
+        </select>
+      </div>
+
+      
+      </div>
+      <div class="card-footer">
+      <button class="btn btn-primary" id="Submit">Submit</button>
+      </div>
+    </div>
+    </form>
+    
+  </div>
+  <div class="col-md-7">
+     <table class="table table-bordered table-sm">
+      <thead>
+       <tr>
+        <td>
+         <select id="DataDeprtchange" class="form-control">
+          <option>Select dept.</option>
+           <option>Select All</option>
+           <option>Hr</option>
+           <option>Admin</option>
+           <option>Operation</option>
+         </select>
+         </td>
+        <td>
+         <input type="text" id="search" class="form-control">
+        </td>
+        <td>
+        <button id="btnSearch" class="btn btn-default">Search</button>
+        </td>
+       </tr>
+      <tr>
+       <td>Name</td>
+       <td>Email ID</td>
+       <td>Department</td>
+       </tr>
+      </thead>
+      <tbody class="tabledata">      
+      </tbody>
+   </table>
+  </div>
+  
+ </div>
+</div>
+<script>
+ $(document).ready(()=>{
+  
+  
+  //form reset
+  let reset= ()=>{
+   $('#fname').val('');
+   $('#lname').val('');
+   $('#email').val('');
+   $('#deprt').val('Select Department');
+   
+  };
+  let datas=[
+   {
+   fname:'Raghav',
+   lname:'Anand',
+   email:'raghav@gmail.com',
+   deprt:'Operation'
+   }
+  ];
+  
+  //submit click event
+  
+   $('#Submit').on("click",(e)=>{
+       e.preventDefault();
+       let fname=$('#fname').val();
+       let lname=$('#lname').val();
+       let email=$('#email').val();
+       let deprt=$('#deprt').val();
+      // $('.tabledata').empty();   
+    
+    datas=[...datas,{fname,lname,email,deprt}];
+    loaddata(datas);
+    reset();
+   });
+  
+  
+  //Drop dwon change event
+  
+  $('#DataDeprtchange').on("change",()=>{
+   let value= $('#DataDeprtchange').val();
+   if(value==='Select All')
+    loaddata(datas);
+   else{
+    let datalist=datas.filter(d=>d.deprt===value);    
+    loaddata(datalist);
+   }
+  });
+  
+ //search event
+  
+  $('#btnSearch').on("click",()=>{
+    let searchqry=$('#search').val();
+   let datalist = datas.filter(d=>d.email===searchqry);
+   loaddata(datalist);
+   $('#DataDeprtchange').val('Select dept.');
+   $('#search').val('');
+  });
+  
+  
+  let loaddata=(datas)=>{
+   $('.tabledata').empty();
+    datas.map(data=>{
+      $('.tabledata').append(`<tr>
+     <td>`+data.fname+` `+data.lname+`</td>
+     <td>`+data.email+`</td>
+     <td>`+data.deprt+`</td></tr>
+    `);
+    });
+  };
+  
+  
+ });
+ </script>
+</body>
+</html>
